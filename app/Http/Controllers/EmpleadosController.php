@@ -88,8 +88,11 @@ class EmpleadosController extends Controller
      * @param  \App\Empleados  $empleados
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Empleados $empleados)
+    public function destroy($id)
     {
         //
+        Empleados::destroy($id);
+        //redireccionar a la vista de empleados
+        return redirect('empleados');
     }
 }

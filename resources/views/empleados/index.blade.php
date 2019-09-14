@@ -20,6 +20,13 @@ Incio (Despliege de datos)
         <td>{{$empleado->apellid}}</td>
         <td>{{$empleado->correo}}</td>
         <td>{{$empleado->telefono}}</td>
+        <td>Editar || 
+        <form action="{{url('/empleados/'.$empleado->id)}}" method="post">
+        {{ csrf_field() }}
+        {{method_field('DELETE')}}
+        <button type="submit" onclick="return confirm('¿Deseas eliminar el registro?')">Borrar</button>
+        </form>
+        </td>
             </tr> 
         @endforeach
         
