@@ -17,10 +17,12 @@ Incio (Despliege de datos)
                 <td>{{$loop->iteration}}</td>
                 <td>{{$empleado->foto}}</td>
         <td>{{$empleado->nombre}}</td>
-        <td>{{$empleado->apellid}}</td>
+        <td>{{$empleado->apellido}}</td>
         <td>{{$empleado->correo}}</td>
         <td>{{$empleado->telefono}}</td>
-        <td>Editar || 
+        <td>
+        <a href="{{url('/empleados/'.$empleado->id.'/edit')}}">Editar</a>
+            || 
         <form action="{{url('/empleados/'.$empleado->id)}}" method="post">
         {{ csrf_field() }}
         {{method_field('DELETE')}}
