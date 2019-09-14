@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Empleados;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class EmpleadosController extends Controller
 {
@@ -45,7 +46,9 @@ class EmpleadosController extends Controller
             $datosEmpleado['foto'] = $request->file('foto')->store('uploads', 'public');
         }
         Empleados::insert($datosEmpleado);
-        return response()->json($datosEmpleado);
+        // return response()->json($datosEmpleado);
+        return redirect('empleados');
+
     }
 
     /**
@@ -83,6 +86,11 @@ class EmpleadosController extends Controller
     {
         //
         $datosEmpleado = request()->except(['_token','_method']);
+        if($request->hasFile('foto')){
+            $empleado = Empleados::findOrFail($id);
+            Storage::delete('public/'.$empleado->foto);
+            $datosEmpleado['foto'] = $request->file('foto')->store('uploads', 'public');
+        }
         Empleados::where('id','=',$id)->update($datosEmpleado);
 
         $empleado = Empleados::findOrFail($id);
@@ -97,9 +105,13 @@ class EmpleadosController extends Controller
      */
     public function destroy($id)
     {
-        //
-        Empleados::destroy($id);
-        //redireccionar a la vista de empleados
+        $empleado = Empleados::findOrFail($id);
+        if(Storage::delete('public/'.$empleado->foto)){
+            //Eliminar un registro de la base de datos en base a un ID
+            Empleados::destroy($id);
+            //redireccionar a la vista de empleados
+        };
+        
         return redirect('empleados');
     }
 }

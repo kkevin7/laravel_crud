@@ -15,9 +15,10 @@ Sección para editar empleados
 <input type="text" name="telefono" id="" value="{{$empleado->telefono}}">
     <br/>
     <label for="foto">{{'Foto'}}</label>
-    {{$empleado->foto}}
+    <img src="{{ asset('storage').'/'. $empleado->foto}}" alt="Foto" width="200">
     <br/>
 <input type="file" name="foto" id="" value="">
+<a href="{{url('/empleados')}}">Empleados</a>
     <br/>
-    <input type="submit" value="Editar">
+    <input type="submit" value="Modificar">
     </form>

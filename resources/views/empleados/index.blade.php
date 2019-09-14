@@ -1,4 +1,5 @@
 Incio (Despliege de datos)
+<a href="{{url('empleados/create')}}">Agregar Empleado</a>
 <table class="table table-light">
     <thead class="thead-light">
         <tr>
@@ -15,7 +16,7 @@ Incio (Despliege de datos)
         @foreach ($empleados as $empleado)
         <tr>
                 <td>{{$loop->iteration}}</td>
-                <td>{{$empleado->foto}}</td>
+                <td><img src="{{ asset('storage').'/'. $empleado->foto}}" alt="Foto" width="200"></td>
         <td>{{$empleado->nombre}}</td>
         <td>{{$empleado->apellido}}</td>
         <td>{{$empleado->correo}}</td>

@@ -17,4 +17,5 @@ Sección para crear empleados
     <input type="file" name="foto" id="" value>
     <br/>
     <input type="submit" value="Agregar">
+    <a href="{{url('/empleados')}}">Empleados</a>
     </form>
