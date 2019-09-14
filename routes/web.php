@@ -14,3 +14,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+// Route::get('/empleados', 'EmpleadosController@index');
+// Route::get('/empleados/create', 'EmpleadosController@create');
+
+//Hacer referencias a las rutas todos los metodos dentro del controllador
+Route::resource('empleados', 'EmpleadosController');
